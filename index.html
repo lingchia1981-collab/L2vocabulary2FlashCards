@@ -106,18 +106,19 @@
         <button id="randomBtn" onclick="shuffleCards()">Shuffle</button>
         <button id="nextBtn" onclick="nextCard()">下一張</button>
     </div>
-    <div class="progress" id="progress">1 / 13</div>
+    <div class="progress" id="progress">1 / 14</div>
 
     <script>
         let vocabulary = [
             { trad: "伯母", simp: "", pinyin: "bómǔ", pos: "(N)", en: "aunt; here a polite term for a friend’s mother regardless of age", img: "伯母", prompt: "北歐清新水彩插畫風，一位溫柔的中年女性微笑著，背景有淡雅的花草，中央上方是標楷體大字「伯母」", sentences: [{ cn: "伯母，您好！", py: "Bómǔ, nínhǎo!", en: "Hello, aunt!" }] },
             { trad: "您", simp: "", pinyin: "nín", pos: "(N)", en: "you (honorific)", img: "您", prompt: "北歐清新水彩插畫風，一雙帶著敬意遞出茶杯的手，色調溫馨，中央上方是標楷體大字「您」", sentences: [{ cn: "老師，謝謝您。", py: "Lǎoshī, xièxie nín.", en: "Teacher, thank you." }] },
-            { trad: "學生", simp: "学生", pinyin: "xuésheng", pos: "(N)", en: "student", img: "學生", prompt: "北歐清新水彩插畫風，一位年輕女學生抱著書本走在校園樹蔭下，中央上方是標楷體大字「學生」", sentences: [{ cn: "她是一位學生。", py: "Tā  shì yí wèi xuésheng.", en: "She is a student." }] },
+            { trad: "學生", simp: "学生", pinyin: "xuéshēng", pos: "(N)", en: "student", img: "學生", prompt: "北歐清新水彩插畫風，一位年輕女學生抱著書本走在校園樹蔭下，中央上方是標楷體大字「學生」", sentences: [{ cn: "她是一位學生。", py: "Tā  shì yí wèi xuésheng.", en: "She is a student." }] },
             { trad: "老師", simp: "老师", pinyin: "lǎoshī", pos: "(N)", en: "teacher", img: "老師", prompt: "北歐清新水彩插畫風，一位溫柔的女老師拿著課本在富士山與櫻花的淡雅背景前微笑，線條柔和，中央上方是標楷體大字「老師」", sentences: [{ cn: "我的老師是日本人。", py: "Wǒ de lǎoshī  shì Rìběnrén.", en: "My teacher is Japanese." }] },
-            { trad: "幾", simp: "几", pinyin: "jǐ", pos: "(N)", en: "how many", img: "幾", prompt: "北歐清新水彩插畫風，桌上放著幾個問號形狀的彩色小盆栽，中央上方是標楷體大字「幾」", sentences: [{ cn: "你家有幾個人？", py: "Nǐ jiā yǒu jǐ gè rén?", en: "How many people are there in your family?" }] },
+            { trad: "幾", simp: "几", pinyin: "jǐ", pos: "(N)", en: "how many", img: "幾", prompt: "北歐清新水彩插畫風，桌上放著幾個問號形狀的彩色小盆栽，中央上方是標楷體大字「幾」", sentences: [{ cn: "你家有幾個人？", py: "Nǐ jiā yǒu jǐ ge rén?", en: "How many people are there in your family?" }] },
             { trad: "個", simp: "个", pinyin: "ge", pos: "(M)", en: "general measure word", img: "個", prompt: "北歐清新水彩插畫風，溫馨的一家四口手牽手散步，線條柔和，中央上方是標楷體大字「個」", sentences: [{ cn: "我家有四個人。", py: "Wǒ jiā yǒu sì ge rén.", en: "There are four people in my family." }] },
+            { trad: "位", simp: "", pinyin: "wèi", pos: "(M)", en: "measure word for people (polite form)", img: "位", prompt: "北歐清新水彩插畫風，兩位優雅的年輕女性並肩站著微笑，背景點綴精緻花草，中央上方是標楷體大字「位」", sentences: [{ cn: "這兩位小姐很漂亮。", py: "Zhè liǎng wèi xiǎojiě hěn piàoliang.", en: "These two ladies are very beautiful." }] },
             { trad: "杯", simp: "", pinyin: "bēi", pos: "(M)", en: "measure word for cups or glasses", img: "杯", prompt: "北歐清新水彩插畫風，一個精緻的陶瓷杯裝著溫熱的茶，散發輕煙，中央上方是標楷體大字「杯」", sentences: [{ cn: "這杯茶很好喝。", py: "Zhè bēi chá hěn hǎohē.", en: "This cup of tea is delicious." }] },
-            { trad: "本", simp: "", pinyin: "běn", pos: "(M)", en: "measure word for books, periodicals, files, etc.", img: "本", prompt: "北歐清新水彩插畫風，一本厚實的精裝書靜靜躺在木質書桌上，陽光灑落，中央上方是標楷體大字「本」", sentences: [{ cn: "我有一本書。", py: "Wǒ yǒu yì běn shū.", en: "I have a book." }] },
+            { trad: "本", simp: "", pinyin: "běn", pos: "(M)", en: "measure word for books", img: "本", prompt: "北歐清新水彩插畫風，一本厚實的精裝書靜靜躺在木質書桌上，陽光灑落，中央上方是標楷體大字「本」", sentences: [{ cn: "我有一本書。", py: "Wǒ yǒu yì běn shū.", en: "I have a book." }] },
             { trad: "棟", simp: "栋", pinyin: "dòng", pos: "(M)", en: "measure word for buildings", img: "棟", prompt: "北歐清新水彩插畫風，一棟造型現代而溫馨的北歐木造小洋房，周圍繞著綠樹，中央上方是標楷體大字「棟」", sentences: [{ cn: "這棟房子很漂亮。", py: "Zhè dòng fángzi hěn piàoliang.", en: "This building/house is very beautiful." }] },
             { trad: "兩", simp: "两", pinyin: "liǎng", pos: "(N)", en: "two", img: "兩", prompt: "北歐清新水彩插畫風，兩個可愛的小女孩正在一起玩耍，畫面溫暖，中央上方是標楷體大字「兩」", sentences: [{ cn: "我有兩個妹妹。", py: "Wǒ yǒu liǎng ge mèimei.", en: "I have two younger sisters." }] },
             { trad: "兄弟", simp: "", pinyin: "xiōngdì", pos: "(N)", en: "brothers", img: "兄弟", prompt: "北歐清新水彩插畫風，兩個男孩勾肩搭背在草地上大笑的背影，中央上方是標楷體大字「兄弟」", sentences: [{ cn: "他們是兄弟。", py: "Tāmen  shì xiōngdì.", en: "They are brothers." }] },
